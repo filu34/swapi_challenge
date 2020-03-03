@@ -1,3 +1,5 @@
+//custom Engine for creating DOM document through Vanilla JavaScript, by passing object constructing html site.
+
 class Tag {
     constructor(parent, child, attribute) {
         this.parent = parent;
@@ -5,14 +7,40 @@ class Tag {
         this.attribute = attribute;
     }
 
-    get tag() {
-        return this.createTagElement();
-    }
+    // get tag() {
+    //     return this.createTagElement();
+    // }
 
-    createTagElement() {
+    // createTagElement() {
+    //     let parent = this.parent;
+    //     let child = this.child;
+    //     let attribute = this.attribute;
+
+    //     child = document.createElement(child);
+    //     parent.appendChild(child);
+
+    //     for (let key in attribute) {
+    //         if (attribute.hasOwnProperty(key)) {
+    //             let value = attribute[key];
+     
+     
+    //             child.setAttribute(key, value);
+    //             console.log( {key}, value );
+    //          }
+    //     }
+     
+    //     return child;
+    // }
+}
+
+Tag.prototype.createTagElement = function() {
         let parent = this.parent;
         let child = this.child;
         let attribute = this.attribute;
+        console.log(parent);
+        console.log(child);
+        console.log(attribute);
+
 
         child = document.createElement(child);
         parent.appendChild(child);
@@ -29,15 +57,15 @@ class Tag {
      
         return child;
     }
-}
 
 const body = document.querySelector("body");
 const attribute = {"class": "test", "style": "background-color: red"};
 
-const div = new Tag(body, "div", {"class": "test", "style": "background-color: red"}, div.tag);
+const div = new Tag(body, "div", {"class": "test", "style": "background-color: red"});
+div.createTagElement();
 
 
-// console.log(div, div.tag);
+console.log(body, div, div.tag);
 
 // const attributes2 = {
 //     div: {
