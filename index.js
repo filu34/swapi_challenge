@@ -1,10 +1,11 @@
 //custom Engine for creating DOM document through Vanilla JavaScript, by passing object constructing html site.
 
 class Tag {
-    constructor(parent, child, attribute) {
+    constructor(parent, child, attribute, text) {
         this.parent = parent;
         this.child = child;
         this.attribute = attribute;
+        this.text = text;
     }
 
     // get tag() {
@@ -37,13 +38,11 @@ Tag.prototype.createTagElement = function() {
         let parent = this.parent;
         let child = this.child;
         let attribute = this.attribute;
-        console.log(parent);
-        console.log(child);
-        console.log(attribute);
-
+        let text = this.text;
 
         child = document.createElement(child);
         parent.appendChild(child);
+        child.innerHTML = text;
 
         for (let key in attribute) {
             if (attribute.hasOwnProperty(key)) {
@@ -61,11 +60,17 @@ Tag.prototype.createTagElement = function() {
 const body = document.querySelector("body");
 const attribute = {"class": "test", "style": "background-color: red"};
 
-const div = new Tag(body, "div", {"class": "test", "style": "background-color: red"});
-div.createTagElement();
+const app = new Tag(
+    body, 
+    "div", 
+    { "class": "app", "style": "background-color: darkgray" }, 
+    "Hello World!"
+);
+app.createTagElement();
 
 
-console.log(body, div, div.tag);
+
+console.log(app);
 
 // const attributes2 = {
 //     div: {
