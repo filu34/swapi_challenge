@@ -7,31 +7,6 @@ class Tag {
         this.attribute = attribute;
         this.text = text;
     }
-
-    // get tag() {
-    //     return this.createTagElement();
-    // }
-
-    // createTagElement() {
-    //     let parent = this.parent;
-    //     let child = this.child;
-    //     let attribute = this.attribute;
-
-    //     child = document.createElement(child);
-    //     parent.appendChild(child);
-
-    //     for (let key in attribute) {
-    //         if (attribute.hasOwnProperty(key)) {
-    //             let value = attribute[key];
-     
-     
-    //             child.setAttribute(key, value);
-    //             console.log( {key}, value );
-    //          }
-    //     }
-     
-    //     return child;
-    // }
 }
 
 Tag.prototype.createTagElement = function() {
@@ -57,6 +32,14 @@ Tag.prototype.createTagElement = function() {
         return child;
     }
 
+fetch('https://swapi.co/api/starships/')
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+    })
+
 const body = document.querySelector("body");
 const attribute = {"class": "test", "style": "background-color: red"};
 
@@ -66,7 +49,6 @@ const app = new Tag(
     { "class": "app", "style": "background-color: darkgray" }, 
     "Hello World!"
 );
-app.createTagElement();
 
 
 
